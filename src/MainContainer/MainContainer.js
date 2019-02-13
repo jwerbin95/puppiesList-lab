@@ -20,10 +20,18 @@ export default class MainContainer extends Component{
 			dogs: newDogs
 		})
 	}
-	updateDog = (key) => {
+	updateDog = (key) =>{
 		let newDogs = this.state.dogs
-		//newDogs[key]=
-	}
+		newDogs[key] = {
+			name: this.textInputName.value,
+			age: this.textInputAge.value,
+			breed: this.textInputBreed.value
+		}
+		this.setState({
+			dogs: newDogs
+		})
+
+	} 
 	render() {
 		return(
 			<div>
@@ -33,7 +41,13 @@ export default class MainContainer extends Component{
 						<PuppyList dogs={this.state.dogs} deleteDog={this.deleteDog} updateDog={this.updateDog}/>
 					</ul>
 				</div>
-				<DogForm addDog={this.addDog}/>
+				<DogForm 
+					addDog={this.addDog}
+					updateDog={this.updateDog}
+					inputRefName={inputName=>this.textInputName=inputName}
+					inputRefAge={inputAge=>this.textInputAge=inputAge}
+					inputRefBreed={inputBreed=>this.textInputBreed=inputBreed}
+				/>
 			</div>
 		)
 	}
